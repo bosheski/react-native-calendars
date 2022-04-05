@@ -1,6 +1,6 @@
 import React, {useState, Fragment, useCallback, useMemo} from 'react';
 import {StyleSheet, View, ScrollView, Text, TouchableOpacity} from 'react-native';
-import {Calendar, CalendarProps} from 'react-native-calendars';
+import {Calendar, CalendarProps} from '@bosheski/react-native-calendars';
 import testIDs from '../testIDs';
 
 const INITIAL_DATE = '2020-02-02';
@@ -43,7 +43,7 @@ const CalendarScreen = () => {
     return (
       <Fragment>
         <Text style={styles.text}>Calendar with week numbers</Text>
-        <Calendar style={styles.calendar} hideExtraDays showWeekNumbers/>
+        <Calendar style={styles.calendar} hideExtraDays showWeekNumbers />
       </Fragment>
     );
   };
@@ -202,7 +202,7 @@ const CalendarScreen = () => {
             textSectionTitleColor: '#319e8e',
             arrowColor: '#319e8e'
           }}
-          onDayPress={(day) => console.warn(`${day.dateString} pressed`)}
+          onDayPress={day => console.warn(`${day.dateString} pressed`)}
         />
       </Fragment>
     );
@@ -382,7 +382,7 @@ const CalendarScreen = () => {
       },
       [getNewSelectedDate]
     );
-  
+
     const onPressArrowRight = useCallback(
       (add, month) => {
         const newDate = getNewSelectedDate(month, true);
@@ -394,7 +394,9 @@ const CalendarScreen = () => {
 
     const CustomHeaderTitle = (
       <TouchableOpacity style={styles.customTitleContainer} onPress={() => console.warn('Tapped!')}>
-        <Text style={styles.customTitle}>{selectedValue.getMonth() + 1}-{selectedValue.getFullYear()}</Text>
+        <Text style={styles.customTitle}>
+          {selectedValue.getMonth() + 1}-{selectedValue.getFullYear()}
+        </Text>
       </TouchableOpacity>
     );
 
@@ -527,8 +529,8 @@ const styles = StyleSheet.create({
     padding: 8
   },
   customTitleContainer: {
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10
   },
   customTitle: {

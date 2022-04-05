@@ -7,7 +7,7 @@ import {
   CalendarProvider,
   TimelineProps,
   CalendarUtils
-} from 'react-native-calendars';
+} from '@bosheski/react-native-calendars';
 import _ from 'lodash';
 
 const INITIAL_TIME = {hour: 8, minutes: 0};
@@ -29,22 +29,22 @@ const EVENTS: TimelineEventProps[] = [
     color: '#e6add8'
   },
   {
-    start: `${getDate()} 01:30:00`,
-    end: `${getDate()} 02:30:00`,
+    start: `${getDate()} 08:30:00`,
+    end: `${getDate()} 10:30:00`,
     title: 'Meeting B',
     summary: 'Summary for meeting B',
     color: '#e6add8'
   },
   {
-    start: `${getDate()} 01:45:00`,
-    end: `${getDate()} 02:45:00`,
+    start: `${getDate()} 08:30:00`,
+    end: `${getDate()} 10:15:00`,
     title: 'Meeting C',
     summary: 'Summary for meeting C',
     color: '#e6add8'
   },
   {
-    start: `${getDate()} 02:40:00`,
-    end: `${getDate()} 03:10:00`,
+    start: `${getDate()} 12:30:00`,
+    end: `${getDate()} 14:30:00`,
     title: 'Meeting D',
     summary: 'Summary for meeting D',
     color: '#e6add8'

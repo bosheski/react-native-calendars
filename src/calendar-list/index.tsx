@@ -299,15 +299,17 @@ class CalendarList extends Component<CalendarListProps, State> {
     const {calendarStyle, horizontal, calendarWidth, testID, ...others} = this.props;
 
     return (
-      <CalendarListItem
-        {...others}
-        item={item}
-        testID={`${testID}_${item}`}
-        style={calendarStyle}
-        horizontal={horizontal}
-        calendarWidth={horizontal ? calendarWidth : undefined}
-        scrollToMonth={this.scrollToMonth}
-      />
+      <React.Fragment></React.Fragment>
+      // <CalendarListItem
+      //   {...others}
+      //   item={item}
+      //   testID={`${testID}_${item}`}
+      //   style={calendarStyle}
+      //   horizontal={horizontal}
+      //   calendarHeight={0}
+      //   calendarWidth={horizontal ? calendarWidth : undefined}
+      //   scrollToMonth={this.scrollToMonth}
+      // />
     );
   };
 
@@ -342,7 +344,7 @@ class CalendarList extends Component<CalendarListProps, State> {
           // @ts-expect-error
           initialListSize={pastScrollRange + futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
-          renderItem={this.renderItem}
+          // renderItem={this.renderItem}
           getItemLayout={this.getItemLayout}
           onViewableItemsChanged={this.onViewableItemsChanged}
           viewabilityConfig={this.viewabilityConfig}

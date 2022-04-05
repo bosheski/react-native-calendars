@@ -271,7 +271,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
         {_renderArrow('left')}
         {_renderArrow('right')}
       </View>
-      {renderDayNames()}
+      {/* {renderDayNames()} */}
     </View>
   );
 });

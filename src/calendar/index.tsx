@@ -309,8 +309,8 @@ const Calendar = (props: CalendarProps) => {
         accessibilityElementsHidden={accessibilityElementsHidden} // iOS
         importantForAccessibility={importantForAccessibility} // Android
       >
-        {renderHeader()}
-        {renderMonth()}
+        {/* {renderHeader()}
+        {renderMonth()} */}
       </View>
     </GestureComponent>
   );

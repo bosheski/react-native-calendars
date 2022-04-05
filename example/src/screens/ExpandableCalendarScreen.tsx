@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import React, {Component, useCallback} from 'react';
 import {Platform, StyleSheet, Alert, View, Text, TouchableOpacity, Button} from 'react-native';
-import {ExpandableCalendar, AgendaList, CalendarProvider, WeekCalendar} from 'react-native-calendars';
+import {ExpandableCalendar, AgendaList, CalendarProvider, WeekCalendar} from '@bosheski/react-native-calendars';
 import testIDs from '../testIDs';
 
 const today = new Date().toISOString().split('T')[0];

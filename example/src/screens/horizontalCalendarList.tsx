@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useCallback} from 'react';
 // @ts-expect-error
-import {CalendarList} from 'react-native-calendars';
+import {CalendarList} from '@bosheski/react-native-calendars';
 import testIDs from '../testIDs';
 
 const INITIAL_DATE = '2020-05-16';
@@ -16,7 +16,7 @@ const HorizontalCalendarList = () => {
     };
   }, [selected]);
 
-  const onDayPress = useCallback((day) => {
+  const onDayPress = useCallback(day => {
     setSelected(day.dateString);
   }, []);
 
