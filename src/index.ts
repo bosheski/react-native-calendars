@@ -15,9 +15,18 @@ export {default as CalendarProvider} from './expandableCalendar/Context/Provider
 export type {CalendarContextProviderProps} from './expandableCalendar/Context/Provider';
 export {default as asCalendarConsumer} from './expandableCalendar/asCalendarConsumer';
 export {default as Timeline} from './timeline/Timeline';
+
 export type {TimelineProps, TimelineEventProps, TimelinePackedEventProps} from './timeline/Timeline';
 export {default as TimelineList} from './timeline-list';
+export {default as TimelineListWeekView} from './timeline-list-weekview';
 export type {TimelineListProps, TimelineListRenderItemInfo} from './timeline-list';
+export {default as TimelineWeekView} from './timeline-weekview/Timeline-Weekview';
+export type {
+  TimelineWeekViewProps,
+  TimelineEventProps,
+  TimelinePackedEventProps
+} from './timeline-weekview/Timeline-Weekview';
+export type {TimelineListWeekViewProps, TimelineListRenderItemInfo} from './timeline-list-weekview';
 export {default as CalendarUtils} from './services';
 export type {DateData, AgendaEntry, AgendaSchedule} from './types';
 export {default as LocaleConfig} from 'xdate';
