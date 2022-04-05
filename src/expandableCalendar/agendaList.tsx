@@ -30,7 +30,6 @@ import styleConstructor from './style';
 import constants from '../commons/constants';
 import Context from './Context';
 
-
 const viewabilityConfig = {
   itemVisiblePercentThreshold: 20 // 50 means if 50% of the item is visible
 };
@@ -65,21 +64,21 @@ export interface AgendaListProps extends SectionListProps<any, DefaultSectionT> 
  */
 const AgendaList = (props: AgendaListProps) => {
   const {
-    theme, 
-    sections, 
-    scrollToNextEvent, 
-    viewOffset = 0, 
-    avoidDateUpdates, 
-    onScroll, 
-    onMomentumScrollBegin, 
+    theme,
+    sections,
+    scrollToNextEvent,
+    viewOffset = 0,
+    avoidDateUpdates,
+    onScroll,
+    onMomentumScrollBegin,
     onMomentumScrollEnd,
     onScrollToIndexFailed,
     renderSectionHeader,
     sectionStyle,
     keyExtractor,
-    dayFormatter, 
-    dayFormat = 'dddd, MMM d', 
-    useMoment, 
+    dayFormatter,
+    dayFormat = 'dddd, MMM d',
+    useMoment,
     markToday = true
   } = props;
   const {date, updateSource, setDate, setDisabled} = useContext(Context);
@@ -176,45 +175,60 @@ const AgendaList = (props: AgendaListProps) => {
     }
   };
 
-  const onViewableItemsChanged = useCallback((info: {viewableItems: Array<ViewToken>; changed: Array<ViewToken>}) => {
-    if (info?.viewableItems && !sectionScroll.current) {
-      const topSection = get(info?.viewableItems[0], 'section.title');
-      if (topSection && topSection !== _topSection.current) {
-        _topSection.current = topSection;
-        if (didScroll.current && !avoidDateUpdates) {
-          // to avoid setDate() on first load (while setting the initial context.date value)
-          setDate?.(_topSection.current, UpdateSources.LIST_DRAG);
+  const onViewableItemsChanged = useCallback(
+    (info: {viewableItems: Array<ViewToken>; changed: Array<ViewToken>}) => {
+      if (info?.viewableItems && !sectionScroll.current) {
+        const topSection = get(info?.viewableItems[0], 'section.title');
+        if (topSection && topSection !== _topSection.current) {
+          _topSection.current = topSection;
+          if (didScroll.current && !avoidDateUpdates) {
+            // to avoid setDate() on first load (while setting the initial context.date value)
+            setDate?.(_topSection.current, UpdateSources.LIST_DRAG);
+          }
         }
       }
-    }
-  }, [_topSection.current, didScroll.current, avoidDateUpdates, setDate]);
+    },
+    [_topSection.current, didScroll.current, avoidDateUpdates, setDate]
+  );
 
-  const _onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (!didScroll.current) {
-      didScroll.current = true;
-    }
-    onScroll?.(event);
-  }, [didScroll.current, onScroll]);
+  const _onScroll = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (!didScroll.current) {
+        didScroll.current = true;
+      }
+      onScroll?.(event);
+    },
+    [didScroll.current, onScroll]
+  );
 
-  const _onMomentumScrollBegin = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setDisabled?.(true);
-    onMomentumScrollBegin?.(event);
-  }, [onMomentumScrollBegin]);
+  const _onMomentumScrollBegin = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      setDisabled?.(true);
+      onMomentumScrollBegin?.(event);
+    },
+    [onMomentumScrollBegin]
+  );
 
-  const _onMomentumScrollEnd = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    // when list momentum ends AND when scrollToSection scroll ends
-    sectionScroll.current = false;
-    setDisabled?.(false);
-    onMomentumScrollEnd?.(event);
-  }, [onMomentumScrollEnd]);
+  const _onMomentumScrollEnd = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      // when list momentum ends AND when scrollToSection scroll ends
+      sectionScroll.current = false;
+      setDisabled?.(false);
+      onMomentumScrollEnd?.(event);
+    },
+    [onMomentumScrollEnd]
+  );
 
-  const _onScrollToIndexFailed = useCallback((info: {index: number; highestMeasuredFrameIndex: number; averageItemLength: number}) => {
-    if (onScrollToIndexFailed) {
-      onScrollToIndexFailed(info);
-    } else {
-      console.log('onScrollToIndexFailed info: ', info);
-    }
-  }, [onScrollToIndexFailed]);
+  const _onScrollToIndexFailed = useCallback(
+    (info: {index: number; highestMeasuredFrameIndex: number; averageItemLength: number}) => {
+      if (onScrollToIndexFailed) {
+        onScrollToIndexFailed(info);
+      } else {
+        console.log('onScrollToIndexFailed info: ', info);
+      }
+    },
+    [onScrollToIndexFailed]
+  );
 
   const onHeaderLayout = useCallback((event: LayoutChangeEvent) => {
     sectionHeight.current = event.nativeEvent.layout.height;
@@ -234,9 +248,12 @@ const AgendaList = (props: AgendaListProps) => {
     );
   }, []);
 
-  const _keyExtractor = useCallback((item: any, index: number) => {
-    return isFunction(keyExtractor) ? keyExtractor(item, index) : String(index);
-  }, [keyExtractor]);
+  const _keyExtractor = useCallback(
+    (item: any, index: number) => {
+      return isFunction(keyExtractor) ? keyExtractor(item, index) : String(index);
+    },
+    [keyExtractor]
+  );
 
   return (
     <SectionList

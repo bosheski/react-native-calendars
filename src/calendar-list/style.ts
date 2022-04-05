@@ -32,7 +32,9 @@ export default function getStyle(theme: Theme = {}) {
       top: 0,
       backgroundColor: appStyle.calendarBackground,
       paddingLeft: 15,
-      paddingRight: 15
+      paddingRight: 15,
+      display: 'flex',
+      flexDirection: 'row'
     },
     // @ts-expect-error
     ...(theme['stylesheet.calendar-list.main'] || {})

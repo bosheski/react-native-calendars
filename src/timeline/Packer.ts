@@ -24,9 +24,9 @@ interface UnavailableHoursOptions {
   dayEnd: number;
 }
 
-export const HOUR_BLOCK_HEIGHT = 100;
-const OVERLAP_EVENTS_SPACINGS = 10;
-const RIGHT_EDGE_SPACING = 10;
+export const HOUR_BLOCK_HEIGHT = 50;
+const OVERLAP_EVENTS_SPACINGS = 3;
+const RIGHT_EDGE_SPACING = 3;
 
 function buildEvent(
   event: Event & {index: number},
@@ -150,7 +150,7 @@ export function buildUnavailableHoursBlocks(
   unavailableHours: UnavailableHours[] = [],
   options: UnavailableHoursOptions
 ) {
-  const {hourBlockHeight = HOUR_BLOCK_HEIGHT, dayStart = 0, dayEnd = 24} = options || {};
+  const {hourBlockHeight = HOUR_BLOCK_HEIGHT, dayStart = 8, dayEnd = 19} = options || {};
   const totalDayHours = dayEnd - dayStart;
   const totalDayHeight = (dayEnd - dayStart) * hourBlockHeight;
   return (

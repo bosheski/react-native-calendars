@@ -23,7 +23,7 @@ export default function getStyle(theme: Theme = {}) {
     week: {
       marginVertical: appStyle.weekVerticalMargin,
       flexDirection: 'row',
-      justifyContent: 'space-around'
+      justifyContent: 'flex-start'
     },
     // @ts-expect-error
     ...(theme['stylesheet.calendar.main'] || {})

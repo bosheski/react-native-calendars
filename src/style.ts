@@ -8,7 +8,7 @@ export const failedColor = '#f67e7e'; // not in use
 export const textSecondaryColor = '#7a92a5'; // not in use
 
 export const textDefaultColor = '#2d4150';
-export const textColor = '#43515c';
+export const textColor = '#384E69';
 export const textLinkColor = '#00BBF2';
 
 export const textDayFontFamily = 'System';
@@ -45,7 +45,7 @@ export const selectedDotColor = foregroundColor;
 export const disabledDotColor = undefined;
 export const inactiveDotColor = undefined;
 export const todayDotColor = undefined;
-export const arrowColor = textLinkColor;
+export const arrowColor = '#384E69';
 export const disabledArrowColor = '#d9e1e8';
 export const monthTextColor = textDefaultColor;
 export const indicatorColor = undefined; // use the default color of React Native ActivityIndicator

@@ -170,12 +170,7 @@ class WeekCalendar extends Component<WeekCalendarProps, State> {
   keyExtractor = (_: string, index: number) => index.toString();
 
   renderWeekDaysNames = () => {
-    return (
-      <WeekDaysNames 
-        firstDay={this.props.firstDay} 
-        style={this.style.dayHeader} 
-      />
-    );
+    return <WeekDaysNames firstDay={this.props.firstDay} style={this.style.dayHeader} />;
   };
 
   render() {

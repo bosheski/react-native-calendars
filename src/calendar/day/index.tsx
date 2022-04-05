@@ -11,7 +11,6 @@ import {DateData} from '../../types';
 import BasicDay, {BasicDayProps} from './basic';
 import PeriodDay from './period';
 
-
 export interface DayProps extends BasicDayProps {
   /** Provide custom day rendering component */
   dayComponent?: React.ComponentType<DayProps & {date?: DateData}>; // TODO: change 'date' prop type to string by removing it from overriding BasicDay's 'date' prop (breaking change for V2)
@@ -57,7 +56,7 @@ const Day = React.memo((props: DayProps) => {
 
     return `${_isToday ? today : ''} ${_date?.toString(formatAccessibilityLabel)} ${markingAccessibilityLabel}`;
   }, [_date, marking, _isToday]);
-  
+
   const Component = dayComponent || (markingType === 'period' ? PeriodDay : BasicDay);
   const dayComponentProps = dayComponent ? {date: xdateToData(date ? new XDate(date) : new XDate())} : undefined;
 

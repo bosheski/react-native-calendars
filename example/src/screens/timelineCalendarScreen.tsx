@@ -10,7 +10,7 @@ import {
 } from 'react-native-calendars';
 import _ from 'lodash';
 
-const INITIAL_TIME = {hour: 9, minutes: 0};
+const INITIAL_TIME = {hour: 8, minutes: 0};
 const today = new Date();
 const getDate = (offset = 0) => CalendarUtils.getCalendarDateString(new Date().setDate(today.getDate() + offset));
 
@@ -224,9 +224,12 @@ export default class TimelineCalendarScreen extends Component {
     // scrollToFirst: true,
     // start: 0,
     // end: 24,
-    unavailableHours: [{start: 0, end: 6}, {start: 22, end: 24}],
+    unavailableHours: [
+      {start: 0, end: 6},
+      {start: 22, end: 24}
+    ],
     overlapEventsSpacing: 8,
-    rightEdgeSpacing: 24,
+    rightEdgeSpacing: 24
   };
 
   render() {
@@ -249,7 +252,6 @@ export default class TimelineCalendarScreen extends Component {
         <TimelineList
           events={eventsByDate}
           timelineProps={this.timelineProps}
-          showNowIndicator
           // scrollToNow
           scrollToFirst
           initialTime={INITIAL_TIME}

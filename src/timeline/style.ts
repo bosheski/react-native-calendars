@@ -15,18 +15,19 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
     },
     contentStyle: {
       backgroundColor: '#ffff',
-      height: calendarHeight + 10,
+      height: calendarHeight + 30,
       ...theme.contentStyle
     },
+
     header: {
       paddingHorizontal: 30,
-      height: 50,
+      height: 20,
       borderTopWidth: 1,
       borderBottomWidth: 1,
       borderColor: '#E6E8F0',
       backgroundColor: '#F5F5F6',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       alignItems: 'stretch',
       ...theme.header
     },
@@ -87,8 +88,10 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
     line: {
       height: 1,
       position: 'absolute',
+      marginTop: 30,
       left: HOURS_SIDEBAR_WIDTH - 16,
       backgroundColor: 'rgb(216,216,216)',
+
       ...theme.line
     },
     verticalLine: {
@@ -128,6 +131,7 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
       fontFamily: constants.isIOS ? 'Helvetica Neue' : 'Roboto',
       fontWeight: '500',
       paddingLeft: 12,
+      marginTop: 30,
       textAlign: 'center',
       width: HOURS_SIDEBAR_WIDTH - 16,
       ...theme.timeLabel

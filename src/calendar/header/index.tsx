@@ -75,7 +75,6 @@ const accessibilityActions = [
   {name: 'decrement', label: 'decrement'}
 ];
 
-
 const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
   const {
     theme,
@@ -102,7 +101,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
     importantForAccessibility
   } = props;
   const style = useRef(styleConstructor(theme));
-  
+
   useImperativeHandle(ref, () => ({
     onPressLeft,
     onPressRight
@@ -161,7 +160,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
       }
 
       return (
-        <Text allowFontScaling={false} key={index} style={dayStyle} numberOfLines={1} accessibilityLabel={''}>
+        <Text allowFontScaling={false} key={index} style={dayStyle} accessibilityLabel={''}>
           {day}
         </Text>
       );
@@ -195,7 +194,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
 
   const _renderArrow = (direction: Direction) => {
     if (hideArrows) {
-      return <View/>;
+      return <View />;
     }
 
     const isLeft = direction === 'left';
@@ -218,7 +217,10 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
           renderArrow(renderArrowDirection)
         ) : (
           // @ts-expect-error style?: StyleProp<ImageStyle>
-          <Image source={imageSource} style={shouldDisable ? style.current.disabledArrowImage : style.current.arrowImage}/>
+          <Image
+            source={imageSource}
+            style={shouldDisable ? style.current.disabledArrowImage : style.current.arrowImage}
+          />
         )}
       </TouchableOpacity>
     );
@@ -236,7 +238,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
   };
 
   const renderWeekNumbersSpace = () => {
-    return showWeekNumbers && <View style={style.current.dayHeader}/>;
+    return showWeekNumbers && <View style={style.current.dayHeader} />;
   };
 
   const renderDayNames = () => {
@@ -262,11 +264,11 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
       importantForAccessibility={importantForAccessibility} // Android
     >
       <View style={style.current.header}>
-        {_renderArrow('left')}
         <View style={style.current.headerContainer}>
           {_renderHeader()}
           {renderIndicator()}
         </View>
+        {_renderArrow('left')}
         {_renderArrow('right')}
       </View>
       {renderDayNames()}
@@ -297,6 +299,6 @@ CalendarHeader.propTypes = {
   webAriaLevel: PropTypes.number
 };
 CalendarHeader.defaultProps = {
-  monthFormat: 'MMMM yyyy',
+  monthFormat: 'MMMM, dd yyyy',
   webAriaLevel: 1
 };

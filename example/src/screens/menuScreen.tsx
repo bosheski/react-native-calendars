@@ -13,20 +13,16 @@ interface Props {
 export default class MenuScreen extends Component<Props> {
   state = {
     forceRTL: false
-  }
+  };
 
-  toggleRTL = (value) => {
+  toggleRTL = value => {
     I18nManager.forceRTL(value);
     this.setState({forceRTL: value});
-  }
+  };
 
   renderEntry(testID: string, title: string, screen: string, options?: any) {
     return (
-      <TouchableOpacity
-        testID={testID}
-        style={styles.menu}
-        onPress={() => this.openScreen(screen, options)}
-      >
+      <TouchableOpacity testID={testID} style={styles.menu} onPress={() => this.openScreen(screen, options)}>
         <Text style={styles.menuText}>{title}</Text>
       </TouchableOpacity>
     );
@@ -36,17 +32,22 @@ export default class MenuScreen extends Component<Props> {
     return (
       <ScrollView>
         <View style={styles.container} testID={testIDs.menu.CONTAINER}>
-          <Image source={appIcon} style={styles.image}/>
+          <Image source={appIcon} style={styles.image} />
           {this.renderEntry(testIDs.menu.CALENDARS, 'Calendars', 'Calendars')}
           {this.renderEntry(testIDs.menu.CALENDAR_LIST, 'Calendar List', 'CalendarsList')}
           {this.renderEntry(testIDs.menu.HORIZONTAL_LIST, 'Horizontal Calendar List', 'HorizontalCalendarList')}
           {this.renderEntry(testIDs.menu.AGENDA, 'Agenda', 'Agenda')}
           {this.renderEntry(testIDs.menu.EXPANDABLE_CALENDAR, 'Expandable Calendar', 'ExpandableCalendar')}
           {this.renderEntry(testIDs.menu.TIMELINE_CALENDAR, 'Timeline Calendar', 'TimelineCalendar')}
+          {this.renderEntry(
+            testIDs.menu.TIMELINE_WEEKVIEW_CALENDAR,
+            'Timeline Week View Calendar',
+            'TimelineWeekViewCalendar'
+          )}
           {this.renderEntry(testIDs.menu.WEEK_CALENDAR, 'Week Calendar', 'ExpandableCalendar', {weekView: true})}
           <View style={styles.switchContainer}>
             <Text>Force RTL</Text>
-            <Switch value={this.state.forceRTL} onValueChange={this.toggleRTL}/>
+            <Switch value={this.state.forceRTL} onValueChange={this.toggleRTL} />
           </View>
         </View>
       </ScrollView>
@@ -76,7 +77,7 @@ export default class MenuScreen extends Component<Props> {
 
   openScreen = (screen: string, options: any) => {
     this.pushScreen(screen, options);
-  }
+  };
 }
 
 const styles = StyleSheet.create({

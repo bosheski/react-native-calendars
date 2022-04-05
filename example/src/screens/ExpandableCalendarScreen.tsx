@@ -63,13 +63,11 @@ const ITEMS: any[] = [
     ]
   },
   {
-    title: dates[6], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}
-    ]
+    title: dates[6],
+    data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]
   },
   {
-    title: dates[7], 
+    title: dates[7],
     data: [{}]
   },
   {
@@ -90,16 +88,14 @@ const ITEMS: any[] = [
     ]
   },
   {
-    title: dates[10], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Last Yoga'}
-    ]
+    title: dates[10],
+    data: [{hour: '12am', duration: '1h', title: 'Last Yoga'}]
   }
 ];
 
 type MarkedDate = {
   [key: string]: object;
-}
+};
 
 function getMarkedDates(items: any[]) {
   const marked: MarkedDate = {};
@@ -175,7 +171,7 @@ export default class ExpandableCalendarScreen extends Component<Props> {
   };
 
   renderItem = ({item}: any) => {
-    return <AgendaItem item={item}/>;
+    return <AgendaItem item={item} />;
   };
 
   render() {
@@ -190,14 +186,13 @@ export default class ExpandableCalendarScreen extends Component<Props> {
         // todayBottomMargin={16}
       >
         {this.props.weekView ? (
-          <WeekCalendar testID={testIDs.weekCalendar.CONTAINER} firstDay={1} markedDates={this.marked}/>
+          <WeekCalendar testID={testIDs.weekCalendar.CONTAINER} firstDay={1} markedDates={this.marked} />
         ) : (
           <ExpandableCalendar
             testID={testIDs.expandableCalendar.CONTAINER}
             // horizontal={false}
             // hideArrows
-            // disablePan
-            // hideKnob
+
             // initialPosition={ExpandableCalendar.positions.OPEN}
             // calendarStyle={styles.calendar}
             // headerStyle={styles.calendar} // for horizontal only
@@ -208,6 +203,8 @@ export default class ExpandableCalendarScreen extends Component<Props> {
             markedDates={this.marked}
             leftArrowImageSource={leftArrowIcon}
             rightArrowImageSource={rightArrowIcon}
+            hideKnob={true}
+            disablePan={true}
             // animateScroll
           />
         )}
@@ -254,7 +251,7 @@ const AgendaItem = React.memo(function AgendaItem(props: ItemProps) {
       </View>
       <Text style={styles.itemTitleText}>{item.title}</Text>
       <View style={styles.itemButtonContainer}>
-        <Button color={'grey'} title={'Info'} onPress={buttonPressed}/>
+        <Button color={'grey'} title={'Info'} onPress={buttonPressed} />
       </View>
     </TouchableOpacity>
   );

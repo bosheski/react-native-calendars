@@ -9,7 +9,6 @@ import {Theme, DayState, MarkingTypes, DateData} from '../../../types';
 import styleConstructor from './style';
 import Marking, {MarkingProps} from '../marking';
 
-
 export interface BasicDayProps extends ViewProps {
   state?: DayState;
   /** The marking object */
@@ -164,7 +163,7 @@ const BasicDay = (props: BasicDayProps) => {
     return (
       <Fragment>
         {renderText()}
-        {renderMarking()}
+        {/* {renderMarking()} */}
       </Fragment>
     );
   };
@@ -193,7 +192,7 @@ const BasicDay = (props: BasicDayProps) => {
     return (
       <View style={style.current.container}>
         {renderContainer()}
-        {renderMarking()}
+        {/* {renderMarking()} */}
       </View>
     );
   };

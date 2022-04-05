@@ -104,8 +104,8 @@ export interface TimelineProps {
 const Timeline = (props: TimelineProps) => {
   const {
     format24h = true,
-    start = 0,
-    end = 24,
+    start = 8,
+    end = 19,
     date,
     events = [],
     onEventPress,

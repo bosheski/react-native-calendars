@@ -275,13 +275,13 @@ PODS:
     - React-jsi (= 0.66.4)
     - React-logger (= 0.66.4)
     - React-perflogger (= 0.66.4)
-  - ReactNativeNavigation (7.25.4):
+  - ReactNativeNavigation (7.26.0):
     - HMSegmentedControl
     - React-Core
     - React-RCTImage
     - React-RCTText
-    - ReactNativeNavigation/Core (= 7.25.4)
-  - ReactNativeNavigation/Core (7.25.4):
+    - ReactNativeNavigation/Core (= 7.26.0)
+  - ReactNativeNavigation/Core (7.26.0):
     - HMSegmentedControl
     - React-Core
     - React-RCTImage
@@ -324,7 +324,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - fmt
     - HMSegmentedControl
 
@@ -424,9 +424,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: e3ffca672dd3772536cb844274094b0e2c31b187
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
-  ReactNativeNavigation: 146bec8f834564f05637b43f469b9ca6e1cbe94f
+  ReactNativeNavigation: b3344828dfe4a696425cbc00d61e05c4c0150f98
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
 
-PODFILE CHECKSUM: ffb49f0b7d9752430ecff5493154eaa340c2e819
+PODFILE CHECKSUM: ace5751cfa615f3493b4d127ff7398258a893f18
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

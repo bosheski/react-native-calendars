@@ -19,7 +19,6 @@ import Day, {DayProps} from './day/index';
 import BasicDay from './day/basic';
 import {MarkingProps} from './day/marking';
 
-
 type MarkedDatesType = {
   [key: string]: MarkingProps;
 };
@@ -77,12 +76,37 @@ export interface CalendarProps extends CalendarHeaderProps, DayProps {
  * @gif: https://github.com/wix/react-native-calendars/blob/master/demo/assets/calendar.gif
  */
 const Calendar = (props: CalendarProps) => {
-  const {initialDate, current, theme, disableMonthChange, allowSelectionOutOfRange, minDate, maxDate, onDayPress, onDayLongPress, hideExtraDays, markedDates, firstDay, showSixWeeks, customHeader, headerStyle, displayLoadingIndicator, testID, enableSwipeMonths, accessibilityElementsHidden, importantForAccessibility, onMonthChange, onVisibleMonthsChange, style: propsStyle} = props;
-  const [currentMonth, setCurrentMonth] = useState(current || initialDate ? parseDate(current || initialDate) : new XDate());
+  const {
+    initialDate,
+    current,
+    theme,
+    disableMonthChange,
+    allowSelectionOutOfRange,
+    minDate,
+    maxDate,
+    onDayPress,
+    onDayLongPress,
+    hideExtraDays,
+    markedDates,
+    firstDay,
+    showSixWeeks,
+    customHeader,
+    headerStyle,
+    displayLoadingIndicator,
+    testID,
+    enableSwipeMonths,
+    accessibilityElementsHidden,
+    importantForAccessibility,
+    onMonthChange,
+    onVisibleMonthsChange,
+    style: propsStyle
+  } = props;
+  const [currentMonth, setCurrentMonth] = useState(
+    current || initialDate ? parseDate(current || initialDate) : new XDate()
+  );
   const style = useRef(styleConstructor(theme));
   const header = useRef();
   const isMounted = useRef(false);
- 
 
   useEffect(() => {
     if (initialDate) {
@@ -108,35 +132,45 @@ const Calendar = (props: CalendarProps) => {
     setCurrentMonth(newMonth);
   };
 
-  const addMonth = useCallback((count: number) => {
-    const newMonth = currentMonth.clone().addMonths(count, true);
-    updateMonth(newMonth);
-  }, [currentMonth, updateMonth]);
+  const addMonth = useCallback(
+    (count: number) => {
+      const newMonth = currentMonth.clone().addMonths(count, true);
+      updateMonth(newMonth);
+    },
+    [currentMonth, updateMonth]
+  );
 
-  const handleDayInteraction = useCallback((date: DateData, interaction?: (date: DateData) => void) => {
-    const day = parseDate(date);
-    const min = parseDate(minDate);
-    const max = parseDate(maxDate);
+  const handleDayInteraction = useCallback(
+    (date: DateData, interaction?: (date: DateData) => void) => {
+      const day = parseDate(date);
+      const min = parseDate(minDate);
+      const max = parseDate(maxDate);
 
-    if (allowSelectionOutOfRange || !(min && !isGTE(day, min)) && !(max && !isLTE(day, max))) {
-      if (!disableMonthChange) {
-        updateMonth(day);
+      if (allowSelectionOutOfRange || (!(min && !isGTE(day, min)) && !(max && !isLTE(day, max)))) {
+        if (!disableMonthChange) {
+          updateMonth(day);
+        }
+        if (interaction) {
+          interaction(date);
+        }
       }
-      if (interaction) {
-        interaction(date);
-      }
-    }
-  }, [minDate, maxDate, allowSelectionOutOfRange, disableMonthChange, updateMonth]);
+    },
+    [minDate, maxDate, allowSelectionOutOfRange, disableMonthChange, updateMonth]
+  );
 
-  const onPressDay = useCallback((date?: DateData) => {
-    if (date)
-    handleDayInteraction(date, onDayPress);
-  }, [handleDayInteraction, onDayPress]);
+  const onPressDay = useCallback(
+    (date?: DateData) => {
+      if (date) handleDayInteraction(date, onDayPress);
+    },
+    [handleDayInteraction, onDayPress]
+  );
 
-  const onLongPressDay = useCallback((date?: DateData) => {
-    if (date)
-    handleDayInteraction(date, onDayLongPress);
-  }, [handleDayInteraction, onDayLongPress]);
+  const onLongPressDay = useCallback(
+    (date?: DateData) => {
+      if (date) handleDayInteraction(date, onDayLongPress);
+    },
+    [handleDayInteraction, onDayLongPress]
+  );
 
   const onSwipeLeft = useCallback(() => {
     // @ts-expect-error
@@ -148,21 +182,24 @@ const Calendar = (props: CalendarProps) => {
     header.current?.onPressLeft();
   }, [header]);
 
-  const onSwipe = useCallback((gestureName: string) => {
-    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+  const onSwipe = useCallback(
+    (gestureName: string) => {
+      const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
 
-    switch (gestureName) {
-      case SWIPE_UP:
-      case SWIPE_DOWN:
-        break;
-      case SWIPE_LEFT:
-        onSwipeLeft();
-        break;
-      case SWIPE_RIGHT:
-        onSwipeRight();
-        break;
-    }
-  }, [onSwipeLeft, onSwipeRight]);
+      switch (gestureName) {
+        case SWIPE_UP:
+        case SWIPE_DOWN:
+          break;
+        case SWIPE_LEFT:
+          onSwipeLeft();
+          break;
+        case SWIPE_RIGHT:
+          onSwipeRight();
+          break;
+      }
+    },
+    [onSwipeLeft, onSwipeRight]
+  );
 
   const renderWeekNumber = (weekNumber: number) => {
     return (
@@ -245,7 +282,7 @@ const Calendar = (props: CalendarProps) => {
     const ref = customHeader ? undefined : header;
     const CustomHeader = customHeader;
     const HeaderComponent = customHeader ? CustomHeader : CalendarHeader;
-    
+
     return (
       <HeaderComponent
         {...headerProps}
