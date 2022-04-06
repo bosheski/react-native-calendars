@@ -132,7 +132,6 @@ const InfiniteList = (props: InfiniteListProps, ref: any) => {
       layoutProvider={layoutProvider.current}
       extendedState={extendedState}
       initialRenderIndex={initialPageIndex}
-      renderAheadOffset={5 * pageWidth}
       onScroll={onScroll}
       style={style}
       scrollViewProps={{

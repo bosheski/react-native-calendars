@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Text} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {
   ExpandableCalendar,
   TimelineEventProps,
@@ -25,57 +26,55 @@ const EVENTS: TimelineEventProps[] = [
     start: `${getDate()} 01:15:00`,
     end: `${getDate()} 02:30:00`,
     title: 'Meeting A',
-    summary: 'Summary for meeting A',
-    color: '#e6add8'
+    summary: 'Summary for meeting A'
   },
   {
     start: `${getDate()} 08:30:00`,
     end: `${getDate()} 10:30:00`,
     title: 'Meeting B',
     summary: 'Summary for meeting B',
-    color: '#e6add8'
+    color: '#9E15BA75',
+    colorTwo: '#DB214B75'
   },
   {
     start: `${getDate()} 08:30:00`,
     end: `${getDate()} 10:15:00`,
     title: 'Meeting C',
     summary: 'Summary for meeting C',
-    color: '#e6add8'
+    color: '#424E8860',
+    colorTwo: '#8445C280'
   },
   {
     start: `${getDate()} 12:30:00`,
     end: `${getDate()} 14:30:00`,
     title: 'Meeting D',
     summary: 'Summary for meeting D',
-    color: '#e6add8'
+    color: '#152F4E85',
+    colorTwo: '#1FA1C585'
   },
   {
     start: `${getDate()} 02:50:00`,
     end: `${getDate()} 03:20:00`,
     title: 'Meeting E',
-    summary: 'Summary for meeting E',
-    color: '#e6add8'
+    summary: 'Summary for meeting E'
   },
   {
     start: `${getDate()} 04:30:00`,
     end: `${getDate()} 05:30:00`,
     title: 'Meeting F',
-    summary: 'Summary for meeting F',
-    color: '#e6add8'
+    summary: 'Summary for meeting F'
   },
   {
-    start: `${getDate(1)} 00:30:00`,
-    end: `${getDate(1)} 01:30:00`,
+    start: `${getDate(1)} 9:30:00`,
+    end: `${getDate(1)} 11:30:00`,
     title: 'Visit Grand Mother',
-    summary: 'Visit Grand Mother and bring some fruits.',
-    color: '#ade6d8'
+    summary: 'Visit Grand Mother and bring some fruits.'
   },
   {
     start: `${getDate(1)} 02:30:00`,
     end: `${getDate(1)} 03:20:00`,
     title: 'Meeting with Prof. Behjet Zuhaira',
-    summary: 'Meeting with Prof. Behjet at 130 in her office.',
-    color: '#e6add8'
+    summary: 'Meeting with Prof. Behjet at 130 in her office.'
   },
   {
     start: `${getDate(1)} 04:10:00`,
@@ -93,21 +92,18 @@ const EVENTS: TimelineEventProps[] = [
     start: `${getDate(1)} 14:30:00`,
     end: `${getDate(1)} 16:30:00`,
     title: 'Meeting Some Friends in ARMED',
-    summary: 'Arsalan, Hasnaat, Talha, Waleed, Bilal',
-    color: '#d8ade6'
+    summary: 'Arsalan, Hasnaat, Talha, Waleed, Bilal'
   },
   {
     start: `${getDate(2)} 01:40:00`,
     end: `${getDate(2)} 02:25:00`,
     title: 'Meet Sir Khurram Iqbal',
-    summary: 'Computer Science Dept. Comsats Islamabad',
-    color: '#e6bcad'
+    summary: 'Computer Science Dept. Comsats Islamabad'
   },
   {
     start: `${getDate(2)} 04:10:00`,
     end: `${getDate(2)} 04:40:00`,
-    title: 'Tea Time with Colleagues',
-    summary: 'WeRplay'
+    title: 'Tea Time with Colleagues'
   },
   {
     start: `${getDate(2)} 00:45:00`,
@@ -248,6 +244,9 @@ export default class TimelineCalendarScreen extends Component {
           leftArrowImageSource={require('../img/previous.png')}
           rightArrowImageSource={require('../img/next.png')}
           markedDates={this.marked}
+          theme={{
+            'stylesheet.calendar.header': {}
+          }}
         />
         <TimelineList
           events={eventsByDate}

@@ -5,7 +5,7 @@ const {getDefaultLocale} = require('./services');
 const latinNumbersPattern = /[0-9]/g;
 
 function isValidXDate(date: any) {
-  return date && (date instanceof XDate);
+  return date && date instanceof XDate;
 }
 
 export function sameMonth(a?: XDate, b?: XDate) {
@@ -21,7 +21,7 @@ export function sameDate(a?: XDate, b?: XDate) {
     return false;
   } else {
     return a?.getFullYear() === b?.getFullYear() && a?.getMonth() === b?.getMonth() && a?.getDate() === b?.getDate();
-  } 
+  }
 }
 
 export function sameWeek(a: string, b: string, firstDayOfWeek: number) {
@@ -87,7 +87,11 @@ export function month(date: XDate) {
 
   return fromTo(firstDay, lastDay);
 }
+export function day() {
+  const day = new XDate().getDate();
 
+  return day;
+}
 export function weekDayNames(firstDayOfWeek = 0) {
   let weekDaysNames = getDefaultLocale().dayNamesShort;
   const dayShift = firstDayOfWeek % 7;

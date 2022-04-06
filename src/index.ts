@@ -18,11 +18,11 @@ export {default as Timeline} from './timeline/Timeline';
 
 export type {TimelineProps, TimelineEventProps, TimelinePackedEventProps} from './timeline/Timeline';
 export {default as TimelineList} from './timeline-list';
-export {default as TimelineListWeekView} from './timeline-list-weekview';
+export {default as TimelineListWV} from './timeline-list-wv';
 export type {TimelineListProps, TimelineListRenderItemInfo} from './timeline-list';
-export {default as TimelineWeekView} from './timeline-weekview/Timeline-Weekview';
-export type {TimelineWeekViewProps} from './timeline-weekview/Timeline-Weekview';
-export type {TimelineListWeekViewProps} from './timeline-list-weekview';
+export {default as TimelineWV} from './timeline-wv/TimelineWV';
+export type {TimelineWVProps} from './timeline-wv/TimelineWV';
+export type {TimelineListWVProps} from './timeline-list-wv';
 export {default as CalendarUtils} from './services';
 export type {DateData, AgendaEntry, AgendaSchedule} from './types';
 export {default as LocaleConfig} from 'xdate';

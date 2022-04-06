@@ -51,7 +51,8 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
     },
     event: {
       position: 'absolute',
-      backgroundColor: '#F0F4FF',
+      backgroundColor: 'white',
+      zIndex: 999,
       borderColor: '#DDE5FD',
       borderWidth: 1,
       paddingLeft: 4,
@@ -66,22 +67,23 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
       ...theme.event
     },
     eventTitle: {
-      color: '#615B73',
-      fontWeight: '600',
-      minHeight: 15,
+      color: '#FFFFFF',
+      fontWeight: '400',
+      minHeight: 14,
+      fontSize: 12,
       ...theme.eventTitle
     },
     eventSummary: {
-      color: '#615B73',
-      fontSize: 12,
+      color: '#FFFFFF',
+      fontSize: 9,
       flexWrap: 'wrap',
       ...theme.eventSummary
     },
     eventTimes: {
       marginTop: 3,
-      fontSize: 10,
-      fontWeight: 'bold',
-      color: '#615B73',
+      fontSize: 9,
+      fontWeight: '400',
+      color: '#FFFFFF',
       flexWrap: 'wrap',
       ...theme.eventTimes
     },
@@ -90,7 +92,7 @@ export default function styleConstructor(theme: Theme = {}, calendarHeight: numb
       position: 'absolute',
       marginTop: 30,
       left: HOURS_SIDEBAR_WIDTH - 16,
-      backgroundColor: 'rgb(216,216,216)',
+      backgroundColor: '#EAEBEF',
 
       ...theme.line
     },

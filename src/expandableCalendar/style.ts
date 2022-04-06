@@ -41,25 +41,25 @@ export default function styleConstructor(theme: Theme = {}) {
       justifyContent: 'center',
       backgroundColor: appStyle.calendarBackground
     },
-    // knob: {
-    //   width: 0,
-    //   height: 4,
-    //   borderRadius: 3,
-    //   backgroundColor: '#e8ecf0'
-    // },
-    // sectionText: {
-    //   fontWeight: 'bold',
-    //   fontSize: 12,
-    //   lineHeight: 16,
-    //   color: '#7a92a5',
-    //   paddingTop: 24, // 8
-    //   paddingBottom: 8,
-    //   paddingLeft: 20,
-    //   paddingRight: 20,
-    //   backgroundColor: appStyle.calendarBackground,
-    //   textAlign: 'left',
-    //   textTransform: 'uppercase'
-    // },
+    knob: {
+      width: 0,
+      height: 4,
+      borderRadius: 3,
+      backgroundColor: '#e8ecf0'
+    },
+    sectionText: {
+      fontWeight: 'bold',
+      fontSize: 12,
+      lineHeight: 16,
+      color: '#7a92a5',
+      paddingTop: 24, // 8
+      paddingBottom: 8,
+      paddingLeft: 20,
+      paddingRight: 20,
+      backgroundColor: appStyle.calendarBackground,
+      textAlign: 'left',
+      textTransform: 'uppercase'
+    },
     header: {
       position: 'absolute',
       left: 0,
@@ -67,27 +67,27 @@ export default function styleConstructor(theme: Theme = {}) {
 
       backgroundColor: appStyle.calendarBackground
     },
-    // headerTitle: {
-    //   alignSelf: 'left',
-    //   paddingTop: 13,
-    //   paddingBottom: 18,
-    //   fontSize: appStyle.textMonthFontSize,
-    //   fontFamily: appStyle.textMonthFontFamily,
-    //   fontWeight: appStyle.textMonthFontWeight,
-    //   color: appStyle.monthTextColor
-    // },
-    // weekDayNames: {
-    //   flexDirection: 'row',
-    //   justifyContent: 'flex-start'
-    // },
-    // dayHeader: {
-    //   width: 32,
-    //   textAlign: 'center',
-    //   fontSize: appStyle.textDayHeaderFontSize,
-    //   fontFamily: appStyle.textDayHeaderFontFamily,
-    //   fontWeight: appStyle.textDayHeaderFontWeight,
-    //   color: appStyle.textSectionTitleColor
-    // },
+    headerTitle: {
+      alignSelf: 'left',
+      paddingTop: 13,
+      paddingBottom: 18,
+      fontSize: appStyle.textMonthFontSize,
+      fontFamily: appStyle.textMonthFontFamily,
+      fontWeight: appStyle.textMonthFontWeight,
+      color: appStyle.monthTextColor
+    },
+    weekDayNames: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start'
+    },
+    dayHeader: {
+      width: 32,
+      textAlign: 'center',
+      fontSize: appStyle.textDayHeaderFontSize,
+      fontFamily: appStyle.textDayHeaderFontFamily,
+      fontWeight: appStyle.textDayHeaderFontWeight,
+      color: appStyle.textSectionTitleColor
+    },
     monthView: {
       backgroundColor: appStyle.calendarBackground
     },
@@ -108,12 +108,12 @@ export default function styleConstructor(theme: Theme = {}) {
       marginBottom: -2
     },
     week: {
-      // marginTop: 7,
-      // marginBottom: 7,
-      // paddingRight: 15,
-      // paddingLeft: 15,
-      // flexDirection: 'row',
-      // justifyContent: 'space-around'
+      marginTop: 7,
+      marginBottom: 7,
+      paddingRight: 15,
+      paddingLeft: 15,
+      flexDirection: 'row',
+      justifyContent: 'space-around'
     },
     dayContainer: {
       flex: 1,
@@ -128,45 +128,45 @@ export default function styleConstructor(theme: Theme = {}) {
     },
     contextWrapper: {
       flex: 1
-    }
-    // todayButtonContainer: {
-    //   alignItems: appStyle.todayButtonPosition === 'right' ? 'flex-end' : 'flex-start',
-    //   position: 'absolute',
-    //   left: 20,
-    //   right: 20,
-    //   bottom: 0
-    // },
-    // todayButton: {
-    //   height: constants.isTablet ? 40 : 28,
-    //   paddingHorizontal: constants.isTablet ? 20 : 12,
-    //   borderRadius: constants.isTablet ? 20 : 14,
-    //   flexDirection: appStyle.todayButtonPosition === 'right' ? 'row-reverse' : 'row',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   backgroundColor: 'white',
-    //   ...Platform.select({
-    //     ios: {
-    //       shadowColor: '#79838A',
-    //       shadowOpacity: 0.3,
-    //       shadowRadius: 14,
-    //       shadowOffset: {height: 6, width: 0}
-    //     },
-    //     android: {
-    //       elevation: 6
-    //     }
-    //   })
-    // },
-    // todayButtonText: {
-    //   color: appStyle.todayButtonTextColor,
-    //   fontSize: constants.isTablet ? appStyle.todayButtonFontSize + 2 : appStyle.todayButtonFontSize,
-    //   fontWeight: appStyle.todayButtonFontWeight,
-    //   fontFamily: appStyle.todayButtonFontFamily
-    // },
-    // todayButtonImage: {
-    //   tintColor: appStyle.todayButtonTextColor,
-    //   marginLeft: appStyle.todayButtonPosition === 'right' ? 7 : undefined,
-    //   marginRight: appStyle.todayButtonPosition === 'right' ? undefined : 7
-    // },
-    // ...(theme?.stylesheet?.expandable?.main || {})
+    },
+    todayButtonContainer: {
+      alignItems: appStyle.todayButtonPosition === 'right' ? 'flex-end' : 'flex-start',
+      position: 'absolute',
+      left: 20,
+      right: 20,
+      bottom: 0
+    },
+    todayButton: {
+      height: constants.isTablet ? 40 : 28,
+      paddingHorizontal: constants.isTablet ? 20 : 12,
+      borderRadius: constants.isTablet ? 20 : 14,
+      flexDirection: appStyle.todayButtonPosition === 'right' ? 'row-reverse' : 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      ...Platform.select({
+        ios: {
+          shadowColor: '#79838A',
+          shadowOpacity: 0.3,
+          shadowRadius: 14,
+          shadowOffset: {height: 6, width: 0}
+        },
+        android: {
+          elevation: 6
+        }
+      })
+    },
+    todayButtonText: {
+      color: appStyle.todayButtonTextColor,
+      fontSize: constants.isTablet ? appStyle.todayButtonFontSize + 2 : appStyle.todayButtonFontSize,
+      fontWeight: appStyle.todayButtonFontWeight,
+      fontFamily: appStyle.todayButtonFontFamily
+    },
+    todayButtonImage: {
+      tintColor: appStyle.todayButtonTextColor,
+      marginLeft: appStyle.todayButtonPosition === 'right' ? 7 : undefined,
+      marginRight: appStyle.todayButtonPosition === 'right' ? undefined : 7
+    },
+    ...(theme?.stylesheet?.expandable?.main || {})
   });
 }

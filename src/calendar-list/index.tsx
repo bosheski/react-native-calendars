@@ -66,6 +66,7 @@ type State = {
   texts: Array<string>;
   openDate: XDate;
   currentMonth: XDate;
+  currentDay: XDate;
 };
 
 /**
@@ -146,7 +147,8 @@ class CalendarList extends Component<CalendarListProps, State> {
       rows,
       texts,
       openDate: date,
-      currentMonth: parseDate(props.current)
+      currentMonth: parseDate(props.current),
+      currentDay: parseDate(props.current)
     };
   }
 
@@ -240,7 +242,18 @@ class CalendarList extends Component<CalendarListProps, State> {
   addMonth = (count: number) => {
     this.updateMonth(this.state.currentMonth.clone().addMonths(count, true));
   };
+  addDay = () => {
+    this.updateDay(this.state.currentDay.clone().addDays(1));
+  };
+  updateDay(day: XDate) {
+    this.setState({currentDay: day.clone()}, () => {
+      this.scrolltoDay(this.state.currentDay);
 
+      const currDay = this.state.currentDay.clone();
+      this.props.onDayChange?.(xdateToData(currDay));
+      this.props.onVisibleDaysChange?.([xdateToData(currDay)]);
+    });
+  }
   updateMonth(day: XDate) {
     if (sameMonth(day, this.state.currentMonth)) {
       return;
@@ -306,7 +319,6 @@ class CalendarList extends Component<CalendarListProps, State> {
       //   testID={`${testID}_${item}`}
       //   style={calendarStyle}
       //   horizontal={horizontal}
-      //   calendarHeight={0}
       //   calendarWidth={horizontal ? calendarWidth : undefined}
       //   scrollToMonth={this.scrollToMonth}
       // />
@@ -325,7 +337,9 @@ class CalendarList extends Component<CalendarListProps, State> {
           testID={STATIC_HEADER}
           style={[this.style.staticHeader, headerStyle]}
           month={this.state.currentMonth}
+          day={this.state.currentDay}
           addMonth={this.addMonth}
+          addDay={this.addDay}
           accessibilityElementsHidden={true} // iOS
           importantForAccessibility={'no-hide-descendants'} // Android
         />
@@ -344,7 +358,7 @@ class CalendarList extends Component<CalendarListProps, State> {
           // @ts-expect-error
           initialListSize={pastScrollRange + futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
-          // renderItem={this.renderItem}
+          renderItem={this.renderItem}
           getItemLayout={this.getItemLayout}
           onViewableItemsChanged={this.onViewableItemsChanged}
           viewabilityConfig={this.viewabilityConfig}

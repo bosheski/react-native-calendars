@@ -184,7 +184,7 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
     );
   };
   const openHeight = useRef(getOpenHeight());
-  const startHeight = 80;
+  const startHeight = 60;
   const _height = useRef(startHeight);
   const deltaY = useRef(new Animated.Value(startHeight));
   const headerDeltaY = useRef(new Animated.Value(initialPosition === Positions.CLOSED ? 0 : -HEADER_HEIGHT));
@@ -477,9 +477,7 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
 
   const renderWeekDaysNames = () => {
     return (
-      <View style={weekDaysStyle}>
-        <WeekDaysNames firstDay={firstDay} style={style.current.dayHeader} />
-      </View>
+      <View style={weekDaysStyle}>{/* <WeekDaysNames firstDay={firstDay} style={style.current.dayHeader} /> */}</View>
     );
   };
 
@@ -559,11 +557,11 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
           <CalendarList
             testID="calendar"
             horizontal={horizontal}
-            // firstDay={firstDay}
-            // calendarStyle={calendarStyle}
-            // {...others}
-            // markedDates={_markedDates}
-            // theme={themeObject}
+            firstDay={firstDay}
+            calendarStyle={calendarStyle}
+            {...others}
+            markedDates={_markedDates}
+            theme={themeObject}
             ref={calendar}
             current={initialDate}
             onDayPress={_onDayPress}
@@ -577,8 +575,8 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
             renderArrow={_renderArrow}
             staticHeader
           />
-          {/* {renderWeekCalendar()} */}
-          {/* {!hideKnob && renderKnob()}
+          {/* {renderWeekCalendar()}
+          {!hideKnob && renderKnob()}
           {!horizontal && renderHeader()} */}
         </Animated.View>
       )}

@@ -19,15 +19,36 @@ export default function (theme: Theme = {}) {
       flexDirection: 'row'
     },
     monthText: {
-      fontSize: appStyle.textMonthFontSize,
+      fontSize: 16,
       fontFamily: appStyle.textMonthFontFamily,
-      fontWeight: appStyle.textMonthFontWeight,
-      color: appStyle.monthTextColor,
+      fontWeight: '400',
+      color: '#152F4E',
       margin: 10
     },
     arrow: {
       padding: 10,
-      ...appStyle.arrowStyle
+      borderWidth: 1,
+      borderColor: '#EAECEF',
+      borderRadius: 100,
+      width: 50,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 10
+    },
+    toggleButton: {
+      padding: 10,
+      borderWidth: 1,
+      borderColor: '#EAECEF',
+      borderRadius: 100,
+      width: 80,
+      height: 38,
+      maxHeight: 38,
+      marginLeft: 15
+    },
+    toggleButtonPicker: {
+      height: '100%',
+      width: '100%'
     },
     arrowImage: {
       ...flipStyle,

@@ -32,7 +32,7 @@ function buildEvent(
   event: Event & {index: number},
   left: number,
   width: number,
-  {dayStart = 0, hourBlockHeight = HOUR_BLOCK_HEIGHT}: PopulateOptions
+  {dayStart = 8, hourBlockHeight = HOUR_BLOCK_HEIGHT}: PopulateOptions
 ): PackedEvent {
   const startTime = new XDate(event.start);
   const endTime = event.end ? new XDate(event.end) : new XDate(startTime).addHours(1);
@@ -41,7 +41,7 @@ function buildEvent(
 
   return {
     ...event,
-    top: (dayStartTime.diffHours(startTime) - dayStart) * hourBlockHeight,
+    top: (dayStartTime.diffHours(startTime) - dayStart) * hourBlockHeight + 30,
     height: startTime.diffHours(endTime) * hourBlockHeight,
     width,
     left

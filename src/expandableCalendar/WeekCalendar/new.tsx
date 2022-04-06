@@ -104,7 +104,7 @@ const WeekCalendar = (props: WeekCalendarProps) => {
     >
       {!hideDayNames && (
         <View style={[style.current.week, style.current.weekCalendar]}>
-          <WeekDaysNames firstDay={firstDay} style={style.current.dayHeader}/>
+          <WeekDaysNames firstDay={firstDay} style={style.current.dayHeader} />
         </View>
       )}
       <View>

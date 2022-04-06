@@ -23,14 +23,13 @@ export default function getStyle(theme: Theme = {}) {
     },
     calendar: {
       paddingLeft: 15,
-      paddingRight: 15,
-      height: 80
+      paddingRight: 15
     },
     staticHeader: {
       position: 'absolute',
       left: 0,
       right: 0,
-      minHeight: 80,
+
       top: 0,
       backgroundColor: appStyle.calendarBackground,
       paddingLeft: 15,

@@ -15,9 +15,12 @@ import {
   AccessibilityActionEvent,
   ColorValue
 } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import {formatNumbers, weekDayNames} from '../../dateutils';
 import {
   CHANGE_MONTH_LEFT_ARROW,
+  CHANGE_DAY_LEFT_ARROW,
+  CHANGE_DAY_RIGHT_ARROW,
   CHANGE_MONTH_RIGHT_ARROW,
   HEADER_DAY_NAMES,
   HEADER_LOADING_INDICATOR,
@@ -29,8 +32,10 @@ import {Theme, Direction} from '../../types';
 
 export interface CalendarHeaderProps {
   month?: XDate;
-  addMonth?: (num: number) => void;
+  day?: XDate;
 
+  addMonth?: (num: number) => void;
+  addDay?: (num: number) => void;
   /** Specify theme properties to override specific styles for calendar parts */
   theme?: Theme;
   /** If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday */
@@ -47,10 +52,11 @@ export interface CalendarHeaderProps {
   hideArrows?: boolean;
   /** Replace default arrows with custom ones (direction can be 'left' or 'right') */
   renderArrow?: (direction: Direction) => ReactNode;
+
   /** Handler which gets executed when press arrow icon left. It receive a callback can go back month */
   onPressArrowLeft?: (method: () => void, month?: XDate) => void; //TODO: replace with string
   /** Handler which gets executed when press arrow icon right. It receive a callback can go next month */
-  onPressArrowRight?: (method: () => void, month?: XDate) => void; //TODO: replace with string
+  onPressArrowRight?: (method: () => void, day?: XDate) => void; //TODO: replace with string
   /** Disable left arrow */
   disableArrowLeft?: boolean;
   /** Disable right arrow */
@@ -80,6 +86,8 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
     theme,
     style: propsStyle,
     addMonth: propsAddMonth,
+    addDay: propsAddDay,
+    day,
     month,
     monthFormat,
     firstDay,
@@ -93,6 +101,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
     disableArrowRight,
     disabledDaysIndexes,
     displayLoadingIndicator,
+    pickerValue,
     customHeaderTitle,
     renderHeader,
     webAriaLevel,
@@ -110,6 +119,9 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
   const addMonth = useCallback(() => {
     propsAddMonth?.(1);
   }, [propsAddMonth]);
+  const addDay = useCallback(() => {
+    propsAddDay?.(1);
+  }, [propsAddDay]);
 
   const subtractMonth = useCallback(() => {
     propsAddMonth?.(-1);
@@ -128,6 +140,11 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
     }
     return addMonth();
   }, [onPressArrowRight, addMonth, month]);
+  //   // if (typeof onPressArrowRight === 'function') {
+  //   //   return onPressArrowRight(addDay, day);
+  //   // }
+  //   return addDay();
+  // }, [onPressArrowRight, addDay, day]);
 
   const onAccessibilityAction = (event: AccessibilityActionEvent) => {
     switch (event.nativeEvent.actionName) {
@@ -158,12 +175,13 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
         // @ts-expect-error
         dayStyle.push(style[dayTextAtIndex]);
       }
-
-      return (
-        <Text allowFontScaling={false} key={index} style={dayStyle} accessibilityLabel={''}>
-          {day}
-        </Text>
-      );
+      if (index !== 6) {
+        return (
+          <Text allowFontScaling={false} key={index} style={dayStyle} accessibilityLabel={''}>
+            {day}
+          </Text>
+        );
+      }
     });
   }, [firstDay]);
 
@@ -246,7 +264,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
       return (
         <View style={style.current.week} testID={testID ? `${HEADER_DAY_NAMES}-${testID}` : HEADER_DAY_NAMES}>
           {renderWeekNumbersSpace()}
-          {renderWeekDays}
+          {/* {renderWeekDays} */}
         </View>
       );
     }
@@ -271,7 +289,8 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
         {_renderArrow('left')}
         {_renderArrow('right')}
       </View>
-      {/* {renderDayNames()} */}
+
+      {renderDayNames()}
     </View>
   );
 });
@@ -280,7 +299,9 @@ export default CalendarHeader;
 CalendarHeader.displayName = 'CalendarHeader';
 CalendarHeader.propTypes = {
   month: PropTypes.instanceOf(XDate),
+  day: PropTypes.instanceOf(XDate),
   addMonth: PropTypes.func,
+  addDay: PropTypes.func,
   theme: PropTypes.object,
   firstDay: PropTypes.number,
   displayLoadingIndicator: PropTypes.bool,
@@ -289,6 +310,7 @@ CalendarHeader.propTypes = {
   hideDayNames: PropTypes.bool,
   hideArrows: PropTypes.bool,
   renderArrow: PropTypes.func,
+
   onPressArrowLeft: PropTypes.func,
   onPressArrowRight: PropTypes.func,
   disableArrowLeft: PropTypes.bool,

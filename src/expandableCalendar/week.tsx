@@ -11,7 +11,6 @@ import Calendar, {CalendarProps} from '../calendar';
 import Day from '../calendar/day/index';
 // import BasicDay from '../calendar/day/basic';
 
-
 export type WeekProps = CalendarProps;
 
 const Week = (props: WeekProps) => {
@@ -31,11 +30,11 @@ const Week = (props: WeekProps) => {
   const renderDay = (day: XDate, id: number) => {
     const dayProps = extractComponentProps(Day, props);
     const currXdate = parseDate(current);
-    
+
     // hide extra days
     if (current && hideExtraDays) {
       if (!sameMonth(day, currXdate)) {
-        return <View key={id} style={style.current.emptyDayContainer}/>;
+        return <View key={id} style={style.current.emptyDayContainer} />;
       }
     }
 
@@ -56,17 +55,18 @@ const Week = (props: WeekProps) => {
   const renderWeek = () => {
     const dates = getWeek(current);
     const week: any[] = [];
-  
+
     if (dates) {
       dates.forEach((day: XDate, id: number) => {
+        console.log(dates);
         week.push(renderDay(day, id));
       }, this);
     }
-  
+
     // if (this.props.showWeekNumbers) {
     //   week.unshift(this.renderWeekNumber(item[item.length - 1].getWeek()));
     // }
-    
+
     return week;
   };
 

@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo} from 'react';
 import {View, Text, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import XDate from 'xdate';
-
+import LinearGradient from 'react-native-linear-gradient';
 export interface Event {
   id?: string;
   start: string;
@@ -9,6 +9,7 @@ export interface Event {
   title: string;
   summary?: string;
   color?: string;
+  colorTwo?: string;
 }
 
 export interface PackedEvent extends Event {
@@ -43,7 +44,8 @@ const EventBlock = (props: EventBlockProps) => {
       height: event.height,
       width: event.width,
       top: event.top,
-      backgroundColor: event.color ? event.color : '#add8e6'
+      backgroundColor: event.color ? event.color : '#add8e6',
+      backgroundColorTwo: event.colorTwo ? event.colorTwo : '#add8e6'
     };
   }, [event]);
 
@@ -52,26 +54,34 @@ const EventBlock = (props: EventBlockProps) => {
   }, [index, onPress]);
 
   return (
-    <TouchableOpacity activeOpacity={0.9} onPress={_onPress} style={[styles.event, eventStyle]}>
-      {renderEvent ? (
-        renderEvent(event)
-      ) : (
-        <View>
-          <Text numberOfLines={1} style={styles.eventTitle}>
-            {event.title || 'Event'}
-          </Text>
-          {numberOfLines > 1 ? (
-            <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary]}>
-              {event.summary || ' '}
+    <TouchableOpacity activeOpacity={0.9} onPress={_onPress}>
+      <LinearGradient
+        colors={[eventStyle.backgroundColor, eventStyle.backgroundColorTwo]}
+        useAngle={true}
+        angle={116}
+        angleCenter={{x: 0.5, y: 0.5}}
+        style={[styles.event, eventStyle]}
+      >
+        {renderEvent ? (
+          renderEvent(event)
+        ) : (
+          <View>
+            <Text numberOfLines={1} style={styles.eventTitle}>
+              {event.title || 'Event'}
             </Text>
-          ) : null}
-          {numberOfLines > 2 ? (
-            <Text style={styles.eventTimes} numberOfLines={1}>
-              {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
-            </Text>
-          ) : null}
-        </View>
-      )}
+            {numberOfLines > 1 ? (
+              <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary]}>
+                {event.summary || ' '}
+              </Text>
+            ) : null}
+            {numberOfLines > 2 ? (
+              <Text style={styles.eventTimes} numberOfLines={1}>
+                {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
+              </Text>
+            ) : null}
+          </View>
+        )}
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
