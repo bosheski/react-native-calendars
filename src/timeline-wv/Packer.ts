@@ -7,6 +7,7 @@ import inRange from 'lodash/inRange';
 type PartialPackedEvent = Event & {index: number};
 interface PopulateOptions {
   screenWidth?: number;
+
   dayStart?: number;
   hourBlockHeight?: number;
   overlapEventsSpacing?: number;
@@ -41,7 +42,7 @@ function buildEvent(
 
   return {
     ...event,
-    top: (dayStartTime.diffHours(startTime) - dayStart) * hourBlockHeight,
+    top: (dayStartTime.diffHours(startTime) - dayStart) * hourBlockHeight + 30,
     height: startTime.diffHours(endTime) * hourBlockHeight,
     width,
     left

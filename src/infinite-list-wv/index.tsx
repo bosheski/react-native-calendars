@@ -31,7 +31,7 @@ const InfiniteListWV = (props: InfiniteListWVProps, ref: any) => {
     renderItem,
     data,
     reloadPages = noop,
-    pageWidth = 180,
+    pageWidth = constants.screenWidth / 8,
     pageHeight = constants.screenHeight,
     pageWidthFull = 1100,
     onPageChange,
@@ -120,7 +120,7 @@ const InfiniteListWV = (props: InfiniteListWVProps, ref: any) => {
   }, []);
 
   const style = useMemo(() => {
-    return {height: pageHeight, width: pageWidthFull, marginLeft: 50};
+    return {height: pageHeight, width: pageWidthFull, marginLeft: 0};
   }, [pageHeight, pageWidthFull]);
 
   return (

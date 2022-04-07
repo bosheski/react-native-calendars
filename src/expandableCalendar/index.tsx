@@ -184,7 +184,7 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
     );
   };
   const openHeight = useRef(getOpenHeight());
-  const startHeight = 60;
+  const startHeight = initialPosition === Positions.CLOSED ? closedHeight : openHeight.current;
   const _height = useRef(startHeight);
   const deltaY = useRef(new Animated.Value(startHeight));
   const headerDeltaY = useRef(new Animated.Value(initialPosition === Positions.CLOSED ? 0 : -HEADER_HEIGHT));
@@ -575,9 +575,9 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
             renderArrow={_renderArrow}
             staticHeader
           />
-          {/* {renderWeekCalendar()}
+          {renderWeekCalendar()}
           {!hideKnob && renderKnob()}
-          {!horizontal && renderHeader()} */}
+          {!horizontal && renderHeader()}
         </Animated.View>
       )}
     </View>

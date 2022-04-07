@@ -175,13 +175,12 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
         // @ts-expect-error
         dayStyle.push(style[dayTextAtIndex]);
       }
-      if (index !== 6) {
-        return (
-          <Text allowFontScaling={false} key={index} style={dayStyle} accessibilityLabel={''}>
-            {day}
-          </Text>
-        );
-      }
+
+      return (
+        <Text allowFontScaling={false} key={index} style={dayStyle} accessibilityLabel={''}>
+          {day}
+        </Text>
+      );
     });
   }, [firstDay]);
 
@@ -264,7 +263,7 @@ const CalendarHeader = forwardRef((props: CalendarHeaderProps, ref) => {
       return (
         <View style={style.current.week} testID={testID ? `${HEADER_DAY_NAMES}-${testID}` : HEADER_DAY_NAMES}>
           {renderWeekNumbersSpace()}
-          {/* {renderWeekDays} */}
+          {renderWeekDays}
         </View>
       );
     }

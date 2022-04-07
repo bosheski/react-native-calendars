@@ -312,16 +312,15 @@ class CalendarList extends Component<CalendarListProps, State> {
     const {calendarStyle, horizontal, calendarWidth, testID, ...others} = this.props;
 
     return (
-      <React.Fragment></React.Fragment>
-      // <CalendarListItem
-      //   {...others}
-      //   item={item}
-      //   testID={`${testID}_${item}`}
-      //   style={calendarStyle}
-      //   horizontal={horizontal}
-      //   calendarWidth={horizontal ? calendarWidth : undefined}
-      //   scrollToMonth={this.scrollToMonth}
-      // />
+      <CalendarListItem
+        {...others}
+        item={item}
+        testID={`${testID}_${item}`}
+        style={calendarStyle}
+        horizontal={horizontal}
+        calendarWidth={horizontal ? calendarWidth : undefined}
+        scrollToMonth={this.scrollToMonth}
+      />
     );
   };
 
