@@ -56,6 +56,8 @@ export interface ExpandableCalendarProps extends CalendarListProps {
   onCalendarToggled?: (isOpen: boolean) => void;
   /** an option to disable the pan gesture and disable the opening and closing of the calendar (initialPosition will persist)*/
   disablePan?: boolean;
+  hideHeaderDays?: boolean;
+  hideHeader?: boolean;
   /** whether to hide the knob  */
   hideKnob?: boolean;
   /** source for the left arrow image */
@@ -113,6 +115,8 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
     style: propsStyle,
     calendarStyle,
     allowShadow = true,
+    hideHeaderDays,
+    hideHeader,
     hideKnob,
     hideArrows,
     onPressArrowLeft,
@@ -247,7 +251,7 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
   }, [allowShadow, propsStyle]);
 
   const wrapperStyle = useMemo(() => {
-    return {height: deltaY.current};
+    return {height: hideHeader ? 0 : deltaY.current};
   }, [deltaY.current]);
 
   /** Effects */
@@ -554,28 +558,34 @@ const ExpandableCalendar = (props: ExpandableCalendarProps) => {
         />
       ) : (
         <Animated.View ref={wrapper} style={wrapperStyle} {...panResponder.panHandlers}>
-          <CalendarList
-            testID="calendar"
-            horizontal={horizontal}
-            firstDay={firstDay}
-            calendarStyle={calendarStyle}
-            {...others}
-            markedDates={_markedDates}
-            theme={themeObject}
-            ref={calendar}
-            current={initialDate}
-            onDayPress={_onDayPress}
-            onVisibleMonthsChange={onVisibleMonthsChange}
-            pagingEnabled
-            scrollEnabled={isOpen}
-            hideArrows={shouldHideArrows}
-            onPressArrowLeft={_onPressArrowLeft}
-            onPressArrowRight={_onPressArrowRight}
-            hideExtraDays={!horizontal && isOpen}
-            renderArrow={_renderArrow}
-            staticHeader
-          />
-          {renderWeekCalendar()}
+          {!hideHeader && (
+              <CalendarList
+                  testID="calendar"
+                  horizontal={horizontal}
+                  firstDay={firstDay}
+                  calendarStyle={calendarStyle}
+                  {...others}
+                  markedDates={_markedDates}
+                  theme={themeObject}
+                  ref={calendar}
+                  current={initialDate}
+                  onDayPress={_onDayPress}
+                  onVisibleMonthsChange={onVisibleMonthsChange}
+                  pagingEnabled
+                  scrollEnabled={isOpen}
+                  hideArrows={shouldHideArrows}
+                  onPressArrowLeft={_onPressArrowLeft}
+                  onPressArrowRight={_onPressArrowRight}
+                  hideExtraDays={!horizontal && isOpen}
+                  renderArrow={_renderArrow}
+                  staticHeader
+              />
+          )}
+          {
+            !hideHeaderDays && (
+                  renderWeekCalendar()
+              )
+          }
           {!hideKnob && renderKnob()}
           {!horizontal && renderHeader()}
         </Animated.View>
