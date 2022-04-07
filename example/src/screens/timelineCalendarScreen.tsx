@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Alert, Text} from 'react-native';
+import XDate from 'xdate';
+import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   ExpandableCalendar,
@@ -143,13 +144,14 @@ export default class TimelineCalendarScreen extends Component {
   };
 
   onDateChanged = (date: string) => {
-    // console.warn('TimelineCalendarScreen onDateChanged: ', date, updateSource);
+    //console.warn('TimelineCalendarScreen onDateChanged: ', date);
     // fetch and set data for date + week ahead
+    console.log(date)
     this.setState({currentDate: date});
   };
 
   onMonthChange = (/* month, updateSource */) => {
-    // console.warn('TimelineCalendarScreen onMonthChange: ', month, updateSource);
+    //console.warn('TimelineCalendarScreen onMonthChange: ', month, updateSource);
   };
 
   createNewEvent: TimelineProps['onBackgroundLongPress'] = (timeString, timeObject) => {
@@ -239,8 +241,20 @@ export default class TimelineCalendarScreen extends Component {
         showTodayButton
         disabledOpacity={0.6}
       >
+        <View style={{height: 60, display: 'flex', flexDirection: 'row'}}>
+          <Text>{new XDate(this.state.currentDate).toString('dddd, dd MMMM yyyy')}</Text>
+          <TouchableOpacity onPress={() => this.setState({currentDate: new XDate(currentDate).addDays(-1).toString('yyyy-MM-dd')})}>
+            <Text>Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.setState({currentDate: new XDate(currentDate).addDays(1).toString('yyyy-MM-dd')})}>
+            <Text>Forward</Text>
+          </TouchableOpacity>
+        </View>
+
         <ExpandableCalendar
           firstDay={1}
+          hideHeaderDays
+          hideHeader
           leftArrowImageSource={require('../img/previous.png')}
           rightArrowImageSource={require('../img/next.png')}
           markedDates={this.marked}
@@ -252,7 +266,7 @@ export default class TimelineCalendarScreen extends Component {
           events={eventsByDate}
           timelineProps={this.timelineProps}
           // scrollToNow
-          scrollToFirst
+          //scrollToFirst
           initialTime={INITIAL_TIME}
         />
       </CalendarProvider>
